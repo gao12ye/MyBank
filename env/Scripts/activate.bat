@@ -1,35 +1,32 @@
 @echo off
+set "VIRTUAL_ENV=C:\Users\ygao\OneDrive\Coding\Docker\Projects\MyBank\env"
 
-set "VIRTUAL_ENV=C:\Working\Coding\Projects\MyBank\env"
+if not defined PROMPT (
+    set "PROMPT=$P$G"
+)
 
 if defined _OLD_VIRTUAL_PROMPT (
     set "PROMPT=%_OLD_VIRTUAL_PROMPT%"
-) else (
-    if not defined PROMPT (
-        set "PROMPT=$P$G"
-    )
-    if not defined VIRTUAL_ENV_DISABLE_PROMPT (
-        set "_OLD_VIRTUAL_PROMPT=%PROMPT%"
-    )
-)
-if not defined VIRTUAL_ENV_DISABLE_PROMPT (
-    set "PROMPT=(env) %PROMPT%"
 )
 
-REM Don't use () to avoid problems with them in %PATH%
-if defined _OLD_VIRTUAL_PYTHONHOME goto ENDIFVHOME
+if defined _OLD_VIRTUAL_PYTHONHOME (
+    set "PYTHONHOME=%_OLD_VIRTUAL_PYTHONHOME%"
+)
+
+set "_OLD_VIRTUAL_PROMPT=%PROMPT%"
+set "PROMPT=(env) %PROMPT%"
+
+if defined PYTHONHOME (
     set "_OLD_VIRTUAL_PYTHONHOME=%PYTHONHOME%"
-:ENDIFVHOME
+    set PYTHONHOME=
+)
 
-set PYTHONHOME=
-
-REM if defined _OLD_VIRTUAL_PATH (
-if not defined _OLD_VIRTUAL_PATH goto ENDIFVPATH1
+if defined _OLD_VIRTUAL_PATH (
     set "PATH=%_OLD_VIRTUAL_PATH%"
-:ENDIFVPATH1
-REM ) else (
-if defined _OLD_VIRTUAL_PATH goto ENDIFVPATH2
+) else (
     set "_OLD_VIRTUAL_PATH=%PATH%"
-:ENDIFVPATH2
+)
 
 set "PATH=%VIRTUAL_ENV%\Scripts;%PATH%"
+
+:END
